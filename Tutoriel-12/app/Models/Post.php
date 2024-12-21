@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Post extends Model
 {
-    protected $fillable = ['title', 'url'];
+    protected $fillable = ['title', 'content'];
 
-    public function comments()
-    {
+    public function comments(){
         return $this->morphMany(Comment::class, 'commentable');
     }
 }
