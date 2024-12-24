@@ -3,40 +3,41 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use App\Http\Middleware\RoleMiddleware;  // Zid had l'import
 
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
+     * Les middlewares globaux de l'application.
      *
      * @var array
      */
     protected $middleware = [
-        // Global middleware li katmchi m3a kullchi
+        // Les middlewares globaux
     ];
 
     /**
-     * The middleware groups for the application.
+     * Les groupes de middleware pour l'application.
      *
      * @var array
      */
     protected $middlewareGroups = [
         'web' => [
-            // Middleware li katsift f web routes
+            // Middlewares pour web
         ],
 
         'api' => [
-            // Middleware li katsift f api routes
+            // Middlewares pour API
         ],
     ];
 
     /**
-     * The route middleware for the application.
+     * Les middlewares de route de l'application.
      *
      * @var array
      */
     protected $routeMiddleware = [
-        'role' => RoleMiddleware::class,  // Hna z3ma ba9i same li fi l'exemple, mais m3a importation
+        // autres middlewares
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
+    
 }

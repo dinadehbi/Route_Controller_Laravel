@@ -2,17 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable;
+    
+    protected $fillable = [
+        'name', 
+        'email', 
+        'password',
+        'role', // Ajouté ici
+    ];
 
-    // Define the hasRole method
     public function hasRole($role)
     {
-        return $this->role === $role;  // Assumes you have a `role` column in the `users` table
+        return $this->role === $role;
+    }
+
+    // Ajout pour hashage mot de passe si nécessaire
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            if ($user->password) {
+                $user->password = bcrypt($user->password);
+            }
+        });
     }
 }
