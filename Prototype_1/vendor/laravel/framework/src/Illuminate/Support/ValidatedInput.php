@@ -127,7 +127,7 @@ class ValidatedInput implements ValidatedData
      */
     public function string($key, $default = null)
     {
-        return Str::of($this->input($key, $default));
+        return str($this->input($key, $default));
     }
 
     /**
@@ -191,7 +191,7 @@ class ValidatedInput implements ValidatedData
      */
     public function collect($key = null)
     {
-        return new Collection(is_array($key) ? $this->only($key) : $this->input($key));
+        return collect(is_array($key) ? $this->only($key) : $this->input($key));
     }
 
     /**

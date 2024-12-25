@@ -5,7 +5,7 @@ namespace Illuminate\Database\Eloquent\Concerns;
 use Closure;
 use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\PendingHasThroughRelationship;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -312,7 +312,7 @@ trait HasRelationships
      * @param  string  $name
      * @param  string  $type
      * @param  string  $id
-     * @param  string|null  $ownerKey
+     * @param  string  $ownerKey
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     protected function morphEagerTo($name, $type, $id, $ownerKey)
@@ -352,7 +352,7 @@ trait HasRelationships
      * @param  \Illuminate\Database\Eloquent\Builder<TRelatedModel>  $query
      * @param  TDeclaringModel  $parent
      * @param  string  $foreignKey
-     * @param  string|null  $ownerKey
+     * @param  string  $ownerKey
      * @param  string  $type
      * @param  string  $relation
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo<TRelatedModel, TDeclaringModel>
@@ -394,11 +394,7 @@ trait HasRelationships
      * @return (
      *     $relationship is string
      *     ? \Illuminate\Database\Eloquent\PendingHasThroughRelationship<\Illuminate\Database\Eloquent\Model, $this>
-     *     : (
-     *          $relationship is \Illuminate\Database\Eloquent\Relations\HasMany<TIntermediateModel, $this>
-     *          ? \Illuminate\Database\Eloquent\PendingHasThroughRelationship<TIntermediateModel, $this, \Illuminate\Database\Eloquent\Relations\HasMany<TIntermediateModel, $this>>
-     *          : \Illuminate\Database\Eloquent\PendingHasThroughRelationship<TIntermediateModel, $this, \Illuminate\Database\Eloquent\Relations\HasOne<TIntermediateModel, $this>>
-     *     )
+     *     : \Illuminate\Database\Eloquent\PendingHasThroughRelationship<TIntermediateModel, $this>
      * )
      */
     public function through($relationship)
@@ -804,7 +800,7 @@ trait HasRelationships
                     $this->$relation->fireModelEvent('saved', false);
 
                     $this->$relation->touchOwners();
-                } elseif ($this->$relation instanceof EloquentCollection) {
+                } elseif ($this->$relation instanceof Collection) {
                     $this->$relation->each->touchOwners();
                 }
             }
