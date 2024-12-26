@@ -1,23 +1,28 @@
-{{-- @extends('layouts.app')
+<!-- resources/views/home.blade.php -->
+@extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <h1>Articles</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($articles as $article)
+                    <tr>
+                        <td>{{ $article->title }}</td>
+                        <td>{{ $article->content }}</td>
+                        <td>{{ $article->category->name ?? 'No Category' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-</div>
-@endsection --}}
+@endsection
+
+

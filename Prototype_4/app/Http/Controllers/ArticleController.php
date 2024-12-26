@@ -10,8 +10,8 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        // Retrieve only necessary columns
         $articles = Article::with('category')->get(['id', 'title', 'content', 'category_id']); 
+        
 
         return view('articles.index', compact('articles'));
     }
@@ -40,4 +40,13 @@ class ArticleController extends Controller
         Article::findOrFail($id)->delete();
         return redirect()->route('articles.index')->with('success', 'Article deleted successfully.');
     }
+
+    public function home()
+    {
+        $articles = Article::with('category')->get();
+
+        return view('home', ['articles' => $articles]);
+    }
+   
+
 }

@@ -20,4 +20,3 @@ class RoleAndPermissionSeeder extends Seeder
         $adminRole->givePermissionTo($permission);
     }
 }
-
