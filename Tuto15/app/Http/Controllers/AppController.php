@@ -1,19 +1,17 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 
-class AppController extends BaseController
+class ArticleController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    // Achi tariqa li bghiti zayd f callAction
-    public function callAction($method, $parameters)
-    {
-        // Logic dyal permissions fi had l-methode
-        return parent::callAction($method, $parameters);
+    public function edit()
+{
+    if (!auth()->user()->can('edit articles')) {
+        abort(403, 'Accès interdit.');
     }
+
+    return view('articles.edit');
+}
 }

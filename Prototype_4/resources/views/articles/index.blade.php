@@ -46,3 +46,12 @@
         </div>
     </div>
 @endsection
+
+@section('adminlte_navbar')
+    <li class="nav-item">
+        <a href="{{ url('/') }}" class="nav-link">
+            <i class="fas fa-home"></i>
+            <p>Home</p>
+        </a>
+    </li>
+@endsection

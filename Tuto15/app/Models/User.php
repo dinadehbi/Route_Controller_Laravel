@@ -44,4 +44,3 @@ class User extends Authenticatable
 
     // Vous pouvez ajouter d'autres méthodes ici si nécessaire
 }
-

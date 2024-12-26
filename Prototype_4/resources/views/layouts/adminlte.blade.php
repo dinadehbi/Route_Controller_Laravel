@@ -1,19 +1,29 @@
-<!-- In your Blade file, e.g., resources/views/layouts/adminlte.blade.php -->
+<!-- Assuming you are extending AdminLTE layout in your view -->
+@extends('adminlte::page')
 
-<!-- Example Navbar with Logout Button -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">AdminLTE</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <!-- Other menu items -->
+@section('title', 'Dashboard')
 
-            <!-- Logout Form -->
-            <li class="nav-item">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
+@section('content_header')
+    <h1>Dashboard</h1>
+@endsection
+
+@section('content')
+    <p>Welcome to the Admin Dashboard!</p>
+@endsection
+
+@section('adminlte_navbar')
+    <!-- Add a new item to the navbar -->
+    <li class="nav-item">
+        <a href="{{ url('/') }}" class="nav-link">
+            <i class="fas fa-home"></i>
+            <p>Home</p>
+        </a>
+    </li>
+    <!-- You can add more links below -->
+    <li class="nav-item">
+        <a href="{{ route('articles.index') }}" class="nav-link">
+            <i class="fas fa-newspaper"></i>
+            <p>Articles</p>
+        </a>
+    </li>
+@endsection
